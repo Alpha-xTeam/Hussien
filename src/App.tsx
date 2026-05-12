@@ -12,6 +12,7 @@ import FAQ from './components/FAQ';
 import Footer from './components/Footer';
 import StarField from './components/StarField';
 import BackToTop from './components/BackToTop';
+import ScrollFollower from './components/ScrollFollower';
 import { useLang } from './LanguageContext';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
       <ProjectTable />
       <FAQ />
       <Footer />
+      <ScrollFollower />
       <BackToTop />
     </div>
   );
