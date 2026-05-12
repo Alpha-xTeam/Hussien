@@ -22,10 +22,12 @@ const Hero = () => {
       <div className="hero-orbs">
         <div className="orb orb-1" /><div className="orb orb-2" /><div className="orb orb-3" />
       </div>
-      <div className="hero-particles">
-        {[...Array(12)].map((_, i) => (
-          <div key={i} className="particle" style={{ left: `${Math.random()*100}%`, top: `${Math.random()*100}%`, width: `${2+Math.random()*4}px`, height: `${2+Math.random()*4}px`, animationDelay: `${Math.random()*6}s`, animationDuration: `${6+Math.random()*8}s` }} />
-        ))}
+      <div className="hero-planet">
+        <div className="planet-core" />
+        <div className="planet-ring ring-1" />
+        <div className="planet-ring ring-2" />
+        <div className="planet-ring ring-3" />
+        <div className="planet-glow" />
       </div>
       <div className="container hero-content">
         <div className="hero-main-layout">
@@ -76,6 +78,78 @@ const Hero = () => {
         .orb-3 { display: none; }
         @keyframes orbFloat { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(40px,-40px) scale(1.05); } }
         .hero-particles { display: none; }
+
+        /* Planet */
+        .hero-planet {
+          position: absolute;
+          width: 700px;
+          height: 700px;
+          top: 30%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 0;
+          pointer-events: none;
+          opacity: 0.6;
+        }
+        .planet-core {
+          position: absolute;
+          width: 80px;
+          height: 80px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle at 40% 35%, rgba(var(--rgb-base),0.2), rgba(var(--rgb-base),0.04));
+          border: 1px solid rgba(var(--rgb-base),0.12);
+          box-shadow: 0 0 80px rgba(var(--rgb-base),0.08);
+        }
+        .planet-core::after {
+          content: '';
+          position: absolute;
+          width: 24px;
+          height: 24px;
+          top: 30%;
+          left: 35%;
+          border-radius: 50%;
+          background: rgba(var(--rgb-base),0.15);
+          filter: blur(4px);
+        }
+        .planet-ring {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          border-radius: 50%;
+          border: 1px solid rgba(var(--rgb-base),0.1);
+          transform: translate(-50%, -50%) rotateX(72deg);
+          animation: ringRotate 30s linear infinite;
+        }
+        .ring-1 { width: 200px; height: 80px; border-width: 1.5px; }
+        .ring-2 { width: 350px; height: 140px; animation-duration: 40s; animation-direction: reverse; border-color: rgba(var(--rgb-base),0.08); }
+        .ring-3 { width: 500px; height: 200px; animation-duration: 50s; border-style: dashed; border-color: rgba(var(--rgb-base),0.06); }
+        .planet-glow {
+          position: absolute;
+          width: 600px;
+          height: 600px;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          border-radius: 50%;
+          background: radial-gradient(circle, rgba(var(--rgb-base),0.05) 0%, transparent 50%);
+          filter: blur(80px);
+        }
+        @keyframes ringRotate {
+          from { transform: translate(-50%, -50%) rotateX(72deg) rotate(0deg); }
+          to { transform: translate(-50%, -50%) rotateX(72deg) rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+          .hero-planet { width: 400px; height: 400px; left: 50%; top: 25%; opacity: 0.25; }
+          .planet-core { width: 40px; height: 40px; }
+          .ring-1 { width: 120px; height: 50px; }
+          .ring-2 { width: 200px; height: 80px; }
+          .ring-3 { width: 280px; height: 110px; }
+          .planet-glow { width: 300px; height: 300px; }
+        }
         .hero-content { position: relative; z-index: 2; width: 100%; }
         .hero-main-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 5rem; align-items: center; }
         .hero-text-content { display: flex; flex-direction: column; gap: 6px; }
