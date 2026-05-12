@@ -87,15 +87,15 @@ const ScrollStory = () => {
     const isMobile = window.innerWidth <= 900;
 
     if (isMobile) {
-      blocksRef.current.forEach((el, i) => {
+      blocksRef.current.forEach((el) => {
         if (!el) return;
         el.style.opacity = '1';
         el.style.transform = 'translateY(0)';
         el.style.position = 'relative';
       });
-      stepsRef.current.forEach((el, i) => {
+      stepsRef.current.forEach((el) => {
         if (!el) return;
-        el.classList.toggle('active', i === 0);
+        el.classList.toggle('active', true);
       });
       return;
     }
@@ -112,7 +112,7 @@ const ScrollStory = () => {
             el.classList.toggle('active', p >= s && p < e2);
             el.classList.toggle('past', p >= e2);
           });
-          blocksRef.current.forEach((el, i) => {
+      blocksRef.current.forEach((el, i) => {
             if (!el) return;
             const s = i / STEPS.length, m = s + 0.6 / STEPS.length, o2 = s + 0.85 / STEPS.length, e2 = (i+1) / STEPS.length;
             let op = 0, y2 = 40;
