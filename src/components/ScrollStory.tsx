@@ -84,6 +84,22 @@ const ScrollStory = () => {
   React.useEffect(() => {
     if (!sectionRef.current) return;
     const section = sectionRef.current;
+    const isMobile = window.innerWidth <= 900;
+
+    if (isMobile) {
+      blocksRef.current.forEach((el, i) => {
+        if (!el) return;
+        el.style.opacity = '1';
+        el.style.transform = 'translateY(0)';
+        el.style.position = 'relative';
+      });
+      stepsRef.current.forEach((el, i) => {
+        if (!el) return;
+        el.classList.toggle('active', i === 0);
+      });
+      return;
+    }
+
     const ctx = gsap.context(() => {
       ScrollTrigger.create({
         trigger: section, pin: true, start: 'top top', end: '+=250%', scrub: 1,
@@ -170,8 +186,8 @@ const ScrollStory = () => {
           .scroll-story { min-height: auto; padding: 60px 0; }
           .story-container { grid-template-columns: 1fr; gap: 0; padding: 0 20px; }
           .story-steps-col { display: none; }
-          .story-blocks { min-height: 350px; }
-          .story-block { grid-template-columns: 1fr; gap: 20px; text-align: center; }
+          .story-blocks { min-height: auto; display: flex; flex-direction: column; gap: 40px; }
+          .story-block { position: relative; inset: auto; display: grid; grid-template-columns: 1fr; gap: 20px; text-align: center; opacity: 1 !important; transform: none !important; }
           .story-block-visual { order: -1; }
           .story-svg { max-width: 260px; margin: 0 auto; }
           .story-block-info { align-items: center; }
@@ -181,7 +197,7 @@ const ScrollStory = () => {
           .story-block-dots { justify-content: center; }
           .story-progress-track { top: 0; }
         }
-        @media (max-width: 480px) { .story-blocks { min-height: 300px; } .story-svg { max-width: 200px; } .story-block-title { font-size: 1.2rem; } .story-block-desc { font-size: 0.8rem; } }
+        @media (max-width: 480px) { .story-blocks { gap: 30px; } .story-svg { max-width: 200px; } .story-block-title { font-size: 1.2rem; } .story-block-desc { font-size: 0.8rem; } }
       `}</style>
     </section>
   );
