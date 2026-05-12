@@ -55,7 +55,7 @@ const Hero = () => {
                 <div className="profile-status"><span className="profile-dot" /><span>{t('hero.available', lang)}</span></div>
               </div>
               <div className="profile-stats">
-                <div className="stat-item"><span className="stat-value">15+</span><span className="stat-label">{t('hero.projects', lang)}</span></div>
+                <div className="stat-item"><span className="stat-value">3</span><span className="stat-label">{t('hero.projects', lang)}</span></div>
                 <div className="stat-divider" />
                 <div className="stat-item"><span className="stat-value">3+</span><span className="stat-label">{t('hero.years', lang)}</span></div>
                 <div className="stat-divider" />

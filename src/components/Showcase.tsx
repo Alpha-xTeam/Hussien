@@ -5,10 +5,9 @@ import { useLang } from '../LanguageContext';
 import { t } from '../i18n';
 
 const PROJECTS = [
-  { title: 'E-Lecture System', desc: 'A comprehensive electronic lecture management system for universities. Features include lecture scheduling, student attendance tracking, exam management, and real-time grade analytics.', tags: ['Next.js', 'TypeScript', 'PostgreSQL'], color: '#f97316', live: '#', code: 'https://github.com/Alpha-xTeam' },
-  { title: 'ShopHub', desc: 'Full-featured e-commerce platform with real-time inventory, payment integration, and admin dashboard.', tags: ['Next.js', 'TypeScript', 'Tailwind'], color: '#4ade80', live: '#', code: 'https://github.com/Alpha-xTeam' },
-  { title: 'TaskFlow', desc: 'Collaborative project management app with drag-and-drop boards, real-time updates, and team analytics.', tags: ['React', 'Node.js', 'PostgreSQL'], color: '#60a5fa', live: '#', code: 'https://github.com/Alpha-xTeam' },
-  { title: 'BrandLens', desc: 'Modern landing page and brand showcase for a creative agency with animated interactions and CMS.', tags: ['Next.js', 'Framer Motion', 'Tailwind'], color: '#c084fc', live: '#', code: 'https://github.com/Alpha-xTeam' },
+  { title: 'SortX', desc: 'Desktop utility that automatically organizes your computer files. Sorts folders by type — images, videos, music, documents, and more. Clean, fast, and efficient.', tags: ['Python', 'Electron', 'Automation'], color: '#8b5cf6', image: '/P3.png', live: '#', code: 'https://github.com/Alpha-xTeam' },
+  { title: 'Filex', desc: 'AI-powered academic assistant that summarizes lectures, translates content, generates academic reports, and creates exams. Streamlines the entire study workflow.', tags: ['Next.js', 'AI', 'Python'], color: '#3b82f6', image: '/P2.png', live: 'https://filex.zone.id', code: 'https://github.com/Alpha-xTeam' },
+  { title: 'E-Lecture System', desc: 'A comprehensive electronic lecture management system for universities. Features include lecture scheduling, student attendance tracking, exam management, and real-time grade analytics.', tags: ['Next.js', 'TypeScript', 'PostgreSQL'], color: '#f97316', image: '/P1.png', live: '#', code: 'https://github.com/Alpha-xTeam' },
 ];
 
 const Showcase = () => {
@@ -37,9 +36,13 @@ const Showcase = () => {
           {PROJECTS.map(project => (
             <div key={project.title} className="project-card">
               <div className="project-card-visual" style={{ background: `linear-gradient(135deg, ${project.color}15, transparent)` }}>
-                <div className="project-placeholder"><div className="placeholder-grid">
-                  {[...Array(9)].map((_, j) => <div key={j} className="placeholder-cell" style={{ animationDelay: `${j*0.1}s` }} />)}
-                </div></div>
+                {project.image ? (
+                  <img src={project.image} alt={project.title} className="project-thumb" loading="lazy" />
+                ) : (
+                  <div className="project-placeholder"><div className="placeholder-grid">
+                    {[...Array(9)].map((_, j) => <div key={j} className="placeholder-cell" style={{ animationDelay: `${j*0.1}s` }} />)}
+                  </div></div>
+                )}
               </div>
               <div className="project-card-body">
                 <h3 className="project-title">{project.title}</h3>
@@ -69,7 +72,9 @@ const Showcase = () => {
         .showcase-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1.25rem; }
         .project-card { border-radius: 20px; border: 1px solid rgba(var(--rgb-base),0.06); background: var(--project-card-bg); overflow: hidden; transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
         .project-card:hover { transform: translateY(-6px); }
-        .project-card-visual { height: 180px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(var(--rgb-base),0.04); }
+        .project-card-visual { height: 180px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(var(--rgb-base),0.04); overflow: hidden; }
+        .project-thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1); }
+        .project-card:hover .project-thumb { transform: scale(1.05); }
         .project-placeholder { width: 80%; height: 80%; display: flex; align-items: center; justify-content: center; }
         .placeholder-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 6px; width: 100%; height: 100%; }
         .placeholder-cell { border-radius: 6px; background: rgba(var(--rgb-base),0.04); animation: cellPulse 2s ease-in-out infinite; }
@@ -86,7 +91,7 @@ const Showcase = () => {
         .showcase-cta { margin-top: 60px; display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 0.9rem; color: var(--text-secondary); }
         .showcase-cta-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--success-color); box-shadow: 0 0 6px var(--success-color); animation: pulseDot 2s ease-in-out infinite; }
         @keyframes pulseDot { 0%,100% { opacity: 1; } 50% { opacity: 0.4; } }
-        @media (max-width: 1024px) { .showcase-grid { grid-template-columns: repeat(2,1fr); } }
+        @media (min-width: 1025px) { .showcase-grid { grid-template-columns: repeat(3,1fr); } }
         @media (max-width: 640px) { .showcase-grid { grid-template-columns: 1fr; } }
         [dir="rtl"] .showcase-title, [dir="rtl"] .project-title { letter-spacing: 0; }
       `}</style>

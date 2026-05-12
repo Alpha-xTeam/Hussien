@@ -5,12 +5,9 @@ import { useLang } from '../LanguageContext';
 import { t } from '../i18n';
 
 const PROJECTS = [
+  { name: 'SortX', stack: 'Electron, Python, Automation', year: '2025', type: 'Desktop' },
+  { name: 'Filex', stack: 'Next.js, AI, Python', year: '2025', type: 'AI App' },
   { name: 'E-Lecture System', stack: 'Next.js, TypeScript, PostgreSQL', year: '2025', type: 'Full Stack' },
-  { name: 'E-Commerce Platform', stack: 'Next.js, Stripe, Tailwind', year: '2025', type: 'Full Stack' },
-  { name: 'Real-Time Chat App', stack: 'React, Socket.io, Node.js', year: '2025', type: 'Web App' },
-  { name: 'Agency Landing Page', stack: 'Next.js, Framer Motion', year: '2024', type: 'Frontend' },
-  { name: 'Dashboard Analytics', stack: 'React, D3.js, TypeScript', year: '2024', type: 'Frontend' },
-  { name: 'API Service Layer', stack: 'Node.js, PostgreSQL, Redis', year: '2024', type: 'Backend' },
 ];
 
 const ProjectTable = () => {
@@ -36,7 +33,7 @@ const ProjectTable = () => {
             <h2 className="ptable-title">{t('ptable.title', lang)} <span className="ptable-title-accent">{t('ptable.titleAccent', lang)}</span></h2>
             <p className="ptable-desc">{t('ptable.desc', lang)}</p>
             <div className="ptable-stats">
-              <div className="ptable-stat"><span className="ptable-stat-value">15+</span><span className="ptable-stat-label">{t('showcase.statProjects', lang)}</span></div>
+              <div className="ptable-stat"><span className="ptable-stat-value">3</span><span className="ptable-stat-label">{t('showcase.statProjects', lang)}</span></div>
               <div className="ptable-stat"><span className="ptable-stat-value">12</span><span className="ptable-stat-label">{t('showcase.statHappy', lang)}</span></div>
             </div>
             <a href="https://github.com/Alpha-xTeam" target="_blank" className="ptable-cta">{t('ptable.cta', lang)}<ArrowUpRight size={14} /></a>

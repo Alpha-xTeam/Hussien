@@ -4,9 +4,9 @@ import { useLang } from '../LanguageContext';
 import { t } from '../i18n';
 
 const STATS = [
-  { value: 20, suffix: '+', key: 'hero.projects' },
+  { value: 3, suffix: '', key: 'hero.projects' },
   { value: 12, suffix: '', key: 'showcase.statHappy' },
-  { value: 15, suffix: '+', key: 'bento.techs' },
+  { value: 10, suffix: '+', key: 'bento.techs' },
   { value: 4, suffix: '+', key: 'hero.years' },
 ];
 
