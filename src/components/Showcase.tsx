@@ -6,7 +6,7 @@ import { t } from '../i18n';
 import ProjectModal from './ProjectModal';
 
 const PROJECTS = [
-  { title: 'SafeGate', desc: 'URL safety checker that scans and analyzes links to determine if they are secure or malicious. Helps protect against phishing and harmful websites.', tags: ['Next.js', 'API', 'Security'], color: '#10b981', image: '', live: 'https://safe-gate.netlify.app/' },
+  { title: 'SafeGate', desc: 'URL safety checker that scans and analyzes links to determine if they are secure or malicious. Helps protect against phishing and harmful websites.', tags: ['Next.js', 'API', 'Security'], color: '#10b981', image: '/P4.png', live: 'https://safe-gate.netlify.app/' },
   { title: 'SortX', desc: 'Desktop utility that automatically organizes your computer files. Sorts folders by type — images, videos, music, documents, and more. Clean, fast, and efficient.', tags: ['Python', 'Electron', 'Automation'], color: '#8b5cf6', image: '/P3.png', live: '#' },
   { title: 'Filex', desc: 'AI-powered academic assistant that summarizes lectures, translates content, generates academic reports, and creates exams. Streamlines the entire study workflow.', tags: ['Next.js', 'AI', 'Python'], color: '#3b82f6', image: '/P2.png', live: 'https://filex.zone.id' },
   { title: 'E-Lecture System', desc: 'A comprehensive electronic lecture management system for universities. Features include lecture scheduling, student attendance tracking, exam management, and real-time grade analytics.', tags: ['Next.js', 'TypeScript', 'PostgreSQL'], color: '#f97316', image: '/P1.png', live: 'https://it-college.zone.id' },
