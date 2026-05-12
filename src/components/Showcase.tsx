@@ -1,17 +1,19 @@
 import React from 'react';
 import gsap from 'gsap';
-import { ExternalLink, Code2, ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight } from 'lucide-react';
 import { useLang } from '../LanguageContext';
 import { t } from '../i18n';
+import ProjectModal from './ProjectModal';
 
 const PROJECTS = [
-  { title: 'SortX', desc: 'Desktop utility that automatically organizes your computer files. Sorts folders by type — images, videos, music, documents, and more. Clean, fast, and efficient.', tags: ['Python', 'Electron', 'Automation'], color: '#8b5cf6', image: '/P3.png', live: '#', code: 'https://github.com/Alpha-xTeam' },
-  { title: 'Filex', desc: 'AI-powered academic assistant that summarizes lectures, translates content, generates academic reports, and creates exams. Streamlines the entire study workflow.', tags: ['Next.js', 'AI', 'Python'], color: '#3b82f6', image: '/P2.png', live: 'https://filex.zone.id', code: 'https://github.com/Alpha-xTeam' },
-  { title: 'E-Lecture System', desc: 'A comprehensive electronic lecture management system for universities. Features include lecture scheduling, student attendance tracking, exam management, and real-time grade analytics.', tags: ['Next.js', 'TypeScript', 'PostgreSQL'], color: '#f97316', image: '/P1.png', live: '#', code: 'https://github.com/Alpha-xTeam' },
+  { title: 'SortX', desc: 'Desktop utility that automatically organizes your computer files. Sorts folders by type — images, videos, music, documents, and more. Clean, fast, and efficient.', tags: ['Python', 'Electron', 'Automation'], color: '#8b5cf6', image: '/P3.png', live: '#' },
+  { title: 'Filex', desc: 'AI-powered academic assistant that summarizes lectures, translates content, generates academic reports, and creates exams. Streamlines the entire study workflow.', tags: ['Next.js', 'AI', 'Python'], color: '#3b82f6', image: '/P2.png', live: 'https://filex.zone.id' },
+  { title: 'E-Lecture System', desc: 'A comprehensive electronic lecture management system for universities. Features include lecture scheduling, student attendance tracking, exam management, and real-time grade analytics.', tags: ['Next.js', 'TypeScript', 'PostgreSQL'], color: '#f97316', image: '/P1.png', live: 'https://it-college.zone.id' },
 ];
 
 const Showcase = () => {
   const { lang } = useLang();
+  const [selected, setSelected] = React.useState<typeof PROJECTS[number] | null>(null);
   const sectionRef = React.useRef<HTMLElement>(null);
 
   React.useEffect(() => {
@@ -33,8 +35,9 @@ const Showcase = () => {
           <p className="showcase-sub">{t('showcase.desc', lang)}</p>
         </div>
         <div className="showcase-grid">
+          <ProjectModal project={selected} onClose={() => setSelected(null)} />
           {PROJECTS.map(project => (
-            <div key={project.title} className="project-card">
+            <div key={project.title} className="project-card" onClick={() => setSelected(project)}>
               <div className="project-card-visual" style={{ background: `linear-gradient(135deg, ${project.color}15, transparent)` }}>
                 {project.image ? (
                   <img src={project.image} alt={project.title} className="project-thumb" loading="lazy" />
@@ -48,10 +51,6 @@ const Showcase = () => {
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-desc">{project.desc}</p>
                 <div className="project-tags">{project.tags.map(tag => <span key={tag} className="project-tag">{tag}</span>)}</div>
-                <div className="project-links">
-                  <a href={project.live} target="_blank" className="project-link"><ExternalLink size={14} />{t('showcase.live', lang)}</a>
-                  <a href={project.code} target="_blank" className="project-link"><Code2 size={14} />{t('showcase.code', lang)}</a>
-                </div>
               </div>
             </div>
           ))}
@@ -70,7 +69,7 @@ const Showcase = () => {
         .showcase-title-accent { background: linear-gradient(135deg,var(--text-primary) 40%,rgba(var(--rgb-base),0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .showcase-sub { font-size: 1rem; color: var(--text-secondary); line-height: 1.7; max-width: 600px; margin: 0 auto; }
         .showcase-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(280px,1fr)); gap: 1.25rem; }
-        .project-card { border-radius: 20px; border: 1px solid rgba(var(--rgb-base),0.06); background: var(--project-card-bg); overflow: hidden; transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+        .project-card { border-radius: 20px; border: 1px solid rgba(var(--rgb-base),0.06); background: var(--project-card-bg); overflow: hidden; cursor: pointer; transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
         .project-card:hover { transform: translateY(-6px); }
         .project-card-visual { height: 180px; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid rgba(var(--rgb-base),0.04); overflow: hidden; }
         .project-thumb { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.2,0.8,0.2,1); }

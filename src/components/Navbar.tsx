@@ -38,7 +38,9 @@ const Navbar = () => {
     if (activeLink && indicatorRef.current) {
       const parentRect = activeLink.parentElement!.getBoundingClientRect();
       const elRect = activeLink.getBoundingClientRect();
-      indicatorRef.current.style.transform = `translateX(${elRect.left - parentRect.left + elRect.width / 2 - 8}px)`;
+      const left = elRect.left - parentRect.left + elRect.width / 2 - 8;
+      indicatorRef.current.style.left = `${left}px`;
+      indicatorRef.current.style.transform = 'none';
     }
   }, [activeSection]);
 
@@ -92,7 +94,7 @@ const Navbar = () => {
         .nav-link { position: relative; z-index: 1; color: var(--nav-link-color); text-decoration: none; font-size: 0.82rem; font-weight: 500; padding: 8px 14px; border-radius: 8px; transition: color 0.25s ease, background 0.25s ease; }
         .nav-link:hover { color: var(--nav-link-hover); background: rgba(var(--rgb-base),0.04); }
         .nav-link.active { color: var(--text-primary); }
-        .nav-indicator { position: absolute; bottom: 2px; height: 3px; border-radius: 2px; background: var(--text-primary); pointer-events: none; width: 16px; transition: transform 0.4s cubic-bezier(0.2,0.8,0.2,1); }
+        .nav-indicator { position: absolute; bottom: 2px; height: 3px; border-radius: 2px; background: var(--text-primary); pointer-events: none; width: 16px; transition: left 0.4s cubic-bezier(0.2,0.8,0.2,1); }
         .nav-actions { display: flex; align-items: center; gap: 8px; }
         .nav-theme, .nav-lang { display: flex; align-items: center; gap: 5px; padding: 6px 10px; border-radius: 8px; border: 1px solid rgba(var(--rgb-base),0.06); background: rgba(var(--rgb-base),0.03); color: var(--text-secondary); font-size: 0.7rem; font-weight: 600; cursor: pointer; font-family: inherit; transition: all 0.2s; }
         .nav-theme:hover, .nav-lang:hover { background: rgba(var(--rgb-base),0.06); color: var(--text-primary); border-color: rgba(var(--rgb-base),0.12); }
