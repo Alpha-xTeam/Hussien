@@ -33,10 +33,12 @@ const ProjectModal = ({ project, onClose }: { project: Project | null; onClose: 
           <X size={18} />
         </button>
 
-        <div className="modal-image-section">
-          <img src={project.image} alt={project.title} className="modal-image" />
-          <div className="modal-image-gradient" />
-        </div>
+        {project.image && (
+          <div className="modal-image-section">
+            <img src={project.image} alt={project.title} className="modal-image" />
+            <div className="modal-image-gradient" />
+          </div>
+        )}
 
         <div className="modal-body">
           <div className="modal-tags">

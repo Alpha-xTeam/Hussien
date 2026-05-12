@@ -5,6 +5,7 @@ import { useLang } from '../LanguageContext';
 import { t } from '../i18n';
 
 const PROJECTS = [
+  { name: 'SafeGate', stack: 'Next.js, API, Security', year: '2025', type: 'Web App' },
   { name: 'SortX', stack: 'Electron, Python, Automation', year: '2025', type: 'Desktop' },
   { name: 'Filex', stack: 'Next.js, AI, Python', year: '2025', type: 'AI App' },
   { name: 'E-Lecture System', stack: 'Next.js, TypeScript, PostgreSQL', year: '2025', type: 'Full Stack' },

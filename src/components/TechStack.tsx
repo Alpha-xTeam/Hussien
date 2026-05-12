@@ -22,6 +22,18 @@ const TechStack = () => {
     if (!sectionRef.current) return;
     const ctx = gsap.context(() => {
       gsap.from('.tech-header', { y: 30, opacity: 0, duration: 0.6, ease: 'power3.out', scrollTrigger: { trigger: sectionRef.current, start: 'top 85%' } });
+
+      const track = document.querySelector('.tech-track');
+      if (track) {
+        const loop = () => {
+          const w = track.scrollWidth / 2;
+          gsap.fromTo(track, { x: 0 }, {
+            x: -w, duration: 25, ease: 'none',
+            onComplete: () => { gsap.set(track, { x: 0 }); loop(); },
+          });
+        };
+        loop();
+      }
     }, sectionRef);
     return () => ctx.revert();
   }, []);
@@ -59,8 +71,7 @@ const TechStack = () => {
         .tech-heading { font-size: clamp(1.5rem,3.5vw,2.5rem); font-weight: 700; letter-spacing: -0.02em; color: var(--text-primary); }
         .tech-heading-accent { background: linear-gradient(135deg, var(--text-primary) 40%,rgba(var(--rgb-base), 0.5)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .tech-marquee { overflow: hidden; mask-image: linear-gradient(to right,transparent 0%,#000 5%,#000 95%,transparent 100%); }
-        .tech-track { display: flex; gap: 12px; width: fit-content; animation: marqueeScroll 30s linear infinite; }
-        @keyframes marqueeScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .tech-track { display: flex; gap: 12px; width: fit-content; }
         .tech-chip { display: flex; align-items: center; gap: 10px; padding: 10px 20px; border-radius: 12px; background: rgba(var(--rgb-base), 0.02); border: 1px solid rgba(var(--rgb-base), 0.06); transition: all 0.3s ease; white-space: nowrap; }
         .tech-chip:hover { background: rgba(var(--rgb-base), 0.04); border-color: rgba(var(--rgb-base), 0.12); transform: translateY(-2px); }
         .tech-chip.active { background: var(--btn-primary-bg); border-color: var(--btn-primary-bg); color: var(--btn-primary-color); }
